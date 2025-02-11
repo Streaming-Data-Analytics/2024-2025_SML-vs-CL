@@ -1,4 +1,4 @@
-# XXXX-XXXX Project-Title
+# 2024_2025 SML vs CL
 
 Optional project of the [Streaming Data Analytics](http://emanueledellavalle.org/teaching/streaming-data-analytics-2023-24/) course provided by [Politecnico di Milano](https://www11.ceda.polimi.it/schedaincarico/schedaincarico/controller/scheda_pubblica/SchedaPublic.do?&evn_default=evento&c_classe=811164&polij_device_category=DESKTOP&__pj0=0&__pj1=d563c55e73c3035baf5b0bab2dda086b).
 
@@ -19,7 +19,7 @@ A crucial challenge associated with data streams is that data can exhibit tempor
 Temporal dependence appears in many domains: IoT sensors track environmental patterns, video surveillance relies on past frames for object tracking, satellite imagery captures spatial continuity over time, and robotics decisions depend on previous states.  
 
 * Goals and objectives
-The goal of this project is to compare SML methodologies and CL strategies on data streams with temporal dependencies in scenarios involving both virtual and real concept drifts. The study evaluates how adaptation-focused models (SML) and models designed to retain past knowledge (CL) perform in these settings, considering both online predictive performance and the impact of forgetting over time.
+This project aims to compare SML methodologies and CL strategies on data streams with temporal dependencies in scenarios involving both virtual and real concept drifts. The study evaluates how adaptation-focused models (SML) and models designed to retain past knowledge (CL) perform in these settings, considering both online predictive performance and the impact of forgetting over time.
 
 # Datasets
 The **Weather dataset** used for this task consists of weather-related data points, where the goal is to predict the **air temperature** based on various features. The dataset includes multiple features collected from weather stations, such as:
@@ -33,14 +33,14 @@ The **target variable** for classification is the **air temperature**, denoted a
 ### Classification Functions
 Here are the **classification functions** used to determine the labels based on the temperature values:
 
-1. **F1+**: Predicts **1** if the current temperature is greater than the previous temperature.
-   $
+1. **F1+**: Predicts **1** if the current temperature exceeds the previous temperature.
+   \[
    y(X_t) = 
    \begin{cases} 
    1, & \text{if } v_t > v_{t-1} \\
    0, & \text{otherwise}
    \end{cases}
-   $
+   \]
 
 2. **F2+**: Predicts **1** if the current temperature is greater than the median of the previous temperatures.
    $
