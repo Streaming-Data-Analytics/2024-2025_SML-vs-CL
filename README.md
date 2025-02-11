@@ -78,6 +78,8 @@ Here are the **classification functions** used to determine the labels based on 
    \end{cases}
    $
 
+
+
 Where:
 - $ v_t $ is the air temperature at time $ t $.
 - $ \Delta_t = v_t - v_{t-1} $ is the difference between the current and the previous temperature.
@@ -120,3 +122,12 @@ In the **real drift** scenario, each concept is **standardized in the same way**
 * Add a `requirement.txt` file for code reproducibility and instructions on how to replicate the results;
 * Commit your changes to your local repository;
 * Push your changes to your online repository.
+
+5. **F5+**: Predicts **1** if the current temperature increase is greater than the median of the previous increases.
+   \[
+   y(X_t) = 
+   \begin{cases} 
+   1, & \text{if } \Delta_t > \text{Median}(\Delta_{t-k}, ..., \Delta_{t-1}) \\
+   0, & \text{otherwise}
+   \end{cases}
+   \]
