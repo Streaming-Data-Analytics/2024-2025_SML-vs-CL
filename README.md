@@ -30,21 +30,21 @@ The **Weather dataset** used for this task consists of weather-related data poin
 Denoting the **target variable** (air temperature) as $ v_t $ , the classification functions are built as follows:
 
 1. **F1+**: Predicts **1** if the current temperature exceeds the previous temperature.
-    $  $ 
+    $$
     y_t = \begin{cases} 
     +1 & \text{if } v_t > 30 \\
     -1 & \text{if } v_t \leq 30 
     \end{cases}
-    $  $ 
+    $$
 
 2. **F2+**: Predicts **1** if the current temperature is greater than the median of the previous temperatures.
-   $  $ 
+   $$
    y(X_t) = 
    \begin{cases} 
    1, & \text{if } v_t > \text{Median}(v_{t-k}, ..., v_{t-1}) \\
    0, & \text{otherwise}
    \end{cases}
-   $  $ 
+   $$ 
 
 3. **F3+**: Predicts **1** if the current temperature is greater than the minimum of the previous temperatures.
    $  $ 
