@@ -7,15 +7,15 @@ Student: **[To be assigned]**
 # Background
 When applying Machine Learning to data streams, one of the most critical challenges in this setting is **concept drift**, which occurs when the statistical properties of the data change over time, impacting the model's ability to make accurate predictions.  
 
-Concept drift can be classified into two types: **virtual drift** and **real drift**. **Virtual drift** happens when the input distribution $ P(X|y) $ or class prior $ P(y) $ changes, but the relationship between inputs and outputs $ P(y|X) $ remains unchanged. This means that while the data may look different, the decision boundary remains the same.
+Concept drift can be classified into two types: **virtual drift** and **real drift**. **Virtual drift** happens when the input distribution$P(X|y)$or class prior$P(y)$changes, but the relationship between inputs and outputs$P(y|X)$remains unchanged. This means that while the data may look different, the decision boundary remains the same.
 
-In contrast, **real drift** occurs when $ P(y|X) $ changes, meaning the decision boundary shifts. This happens when new patterns contradict previous ones, requiring the model to discard outdated knowledge.
+In contrast, **real drift** occurs when$P(y|X)$changes, meaning the decision boundary shifts. This happens when new patterns contradict previous ones, requiring the model to discard outdated knowledge.
 
-These differences in drift types lead to distinct learning strategies in **Continual Learning (CL)** and **Streaming Machine Learning (SML)**. **CL assumes virtual drift**, where new concepts introduce novel but non-contradictory problems. One can imagine that there is a general problem split into different subproblems, each defined by a specific concept and represented by a specific input distribution $P(X)$. The objective is to **retain past knowledge** while integrating new information, ensuring that previously learned concepts remain useful. Forgetting is undesirable in this setting because older concepts remain valid. 
+These differences in drift types lead to distinct learning strategies in **Continual Learning (CL)** and **Streaming Machine Learning (SML)**. **CL assumes virtual drift**, where new concepts introduce novel but non-contradictory problems. One can imagine that there is a general problem split into different subproblems, each defined by a specific concept and represented by a specific input distribution$P(X)$. The objective is to **retain past knowledge** while integrating new information, ensuring that previously learned concepts remain useful. Forgetting is undesirable in this setting because older concepts remain valid. 
 
 **SML, on the other hand, assumes real drift**, where new concepts may **replace old ones** due to shifts in decision boundaries. One can imagine a single problem that continuously changes over time. Here, rapid adaptation takes priority over memory retention, as past knowledge may no longer be relevant or may even contradict the current task. Avoiding forgetting is impossible since the model cannot jointly solve contradictory problems.  
 
-A crucial challenge associated with data streams is that data can exhibit temporal dependence. This dependence arises when a data point's value is influenced by previous observations. It plays a crucial role in modelling real-world processes in data streams, as current outcomes are often correlated with past data. Formally, temporal dependence exists if $\exists \tau \; P(a_t \mid b_{t-\tau}) \neq P(a_t)$, meaning that a feature or target at time $ t $ is statistically dependent on features or targets from previous time steps.  
+A crucial challenge associated with data streams is that data can exhibit temporal dependence. This dependence arises when a data point's value is influenced by previous observations. It plays a crucial role in modelling real-world processes in data streams, as current outcomes are often correlated with past data. Formally, temporal dependence exists if$\exists \tau \; P(a_t \mid b_{t-\tau}) \neq P(a_t)$, meaning that a feature or target at time$t$is statistically dependent on features or targets from previous time steps.  
 
 # Goals and objectives
 This project aims to compare SML methodologies and CL strategies on data streams with temporal dependencies in scenarios involving both virtual and real concept drifts. The study evaluates how adaptation-focused models (SML) and models designed to retain past knowledge (CL) perform in these settings, considering both online predictive performance and the impact of forgetting over time.
@@ -27,57 +27,57 @@ The **Weather dataset** used for this task consists of weather-related data poin
 - **Humidity**: The percentage of moisture in the air.
 - **Dew Point**: The temperature at which air becomes saturated with moisture and forms dew.
 
-Denoting the **target variable** (air temperature) as $ v_t $, the classification functions are built as follows:
+Denoting the **target variable** (air temperature) as$v_t$, the classification functions are built as follows:
 
 1. **F1+**: Predicts **1** if the current temperature exceeds the previous temperature.
-    $$
+   $$
     y_t = \begin{cases} 
     +1 & \text{if } v_t > 30 \\
     -1 & \text{if } v_t \leq 30 
     \end{cases}
-    $$
+   $$
 
 2. **F2+**: Predicts **1** if the current temperature is greater than the median of the previous temperatures.
-   $$
+  $$
    y(X_t) = 
    \begin{cases} 
    1, & \text{if } v_t > \text{Median}(v_{t-k}, ..., v_{t-1}) \\
    0, & \text{otherwise}
    \end{cases}
-   $$
+  $$
 
 3. **F3+**: Predicts **1** if the current temperature is greater than the minimum of the previous temperatures.
-   $$
+  $$
    y(X_t) = 
    \begin{cases} 
    1, & \text{if } v_t > \text{Min}(v_{t-k}, ..., v_{t-1}) \\
    0, & \text{otherwise}
    \end{cases}
-   $$
+  $$
 
 4. **F4+**: Predicts **1** if the current temperature increase is greater than the previous temperature increase.
-   $$
+  $$
    y(X_t) = 
    \begin{cases} 
    1, & \text{if } \Delta_t > \Delta_{t-1} \\
    0, & \text{otherwise}
    \end{cases}
-   $$
+  $$
 
 5. **F5+**: Predicts **1** if the current temperature increase is greater than the median of the previous increases.
-   $$
+  $$
    y(X_t) = 
    \begin{cases} 
    1, & \text{if } \Delta_t > \text{Median}(\Delta_{t-k}, ..., \Delta_{t-1}) \\
    0, & \text{otherwise}
    \end{cases}
-   $$
+  $$
 
 
 
 Where:
-- $ v_t $ is the air temperature at time $ t $.
-- $ \Delta_t = v_t - v_{t-1} $ is the difference between the current and the previous temperature.
+-$v_t$is the air temperature at time$t$.
+-$\Delta_t = v_t - v_{t-1}$is the difference between the current and the previous temperature.
 
 ### Data Stream Setup
 
