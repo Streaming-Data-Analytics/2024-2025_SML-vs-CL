@@ -34,7 +34,12 @@ The **target variable** for classification is the **air temperature**, denoted a
 Here are the **classification functions** used to determine the labels based on the temperature values:
 
 1. **F1+**: Predicts **1** if the current temperature exceeds the previous temperature.
-   $y(X_t) = \begin{cases} 1, & \text{if } v_t > v_{t-1} \\0, & \text{otherwise} \end{cases}$
+$$
+y_t = \begin{cases} 
++1 & \text{if } v_t > 30 \\
+-1 & \text{if } v_t \leq 30 
+\end{cases}
+$$
 
 2. **F2+**: Predicts **1** if the current temperature is greater than the median of the previous temperatures.
    $
