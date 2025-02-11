@@ -36,7 +36,7 @@ Here are the **classification functions** used to determine the labels based on 
 1. **F1+**: Predicts **1** if the current temperature exceeds the previous temperature.
    \[
    y(X_t) = 
-   \begin{cases} 
+   \begin{cases}
    1, & \text{if } v_t > v_{t-1} \\
    0, & \text{otherwise}
    \end{cases}
