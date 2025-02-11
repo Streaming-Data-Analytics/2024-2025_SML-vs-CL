@@ -9,7 +9,7 @@ When applying Machine Learning to data streams, one of the most critical challen
 
 Concept drift can be classified into two types: **virtual drift** and **real drift**. **Virtual drift** happens when the input distribution $ P(X|y) $ or class prior $ P(y) $ changes, but the relationship between inputs and outputs $ P(y|X) $ remains unchanged. This means that while the data may look different, the decision boundary remains the same.
 
-In contrast, **real drift** occurs when $ P(y|X) $ changes, meaning the decision boundary shifts. This happens when new patterns contradict previous ones, requiring the model to discard outdated knowledge.
+In contrast, **real drift** occurs when $P(y|X)$ changes, meaning the decision boundary shifts. This happens when new patterns contradict previous ones, requiring the model to discard outdated knowledge.
 
 These differences in drift types lead to distinct learning strategies in **Continual Learning (CL)** and **Streaming Machine Learning (SML)**. **CL assumes virtual drift**, where new concepts introduce novel but non-contradictory problems. One can imagine that there is a general problem split into different subproblems, each defined by a specific concept and represented by a specific input distribution $ P(X) $ . The objective is to **retain past knowledge** while integrating new information, ensuring that previously learned concepts remain useful. Forgetting is undesirable in this setting because older concepts remain valid. 
 
