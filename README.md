@@ -7,7 +7,7 @@ Student: **[To be assigned]**
 **DISCAIMER**: This project requires a neural networks/deep learning background.
 _____
 # Brief Description
-This project compares Streaming Machine Learning (SML) and Continual Learning (CL) models on data streams with temporal dependencies, under virtual and real drift scenarios. We use a weather dataset to predict air temperature based on various weather features, divided into five concepts representing different weather patterns.
+This project compares Streaming Machine Learning (SML) and Continual Learning (CL) models on data streams with **temporal dependencies**, under **virtual and real drift scenarios**. We use a weather dataset to predict air temperature based on various weather features, divided into five concepts representing different weather patterns.
 
 The goal is to evaluate how SML, which focuses on rapid adaptation, and CL, which aims to retain past knowledge, handle concept drift and forgetting. The models are assessed through prequential evaluation and CL metrics, including accuracy and backward transfer.
 
@@ -18,7 +18,7 @@ The project involves modifying existing code to handle temporal sequences and dr
 ______
 
 # Background
-When applying Machine Learning to data streams, one of the most critical challenges in this setting is **concept drift**, which occurs when the statistical properties of the data change over time, impacting the model's ability to make accurate predictions.  
+When applying Machine Learning to data streams, one of the most critical challenges is **concept drift**, which occurs when the statistical properties of the data change over time, potentially impacting the model's ability to make accurate predictions.  
 
 Concept drift can be classified into two types: **virtual drift** and **real drift**. **Virtual drift** happens when the input distribution $P(X|y)$ or class prior $P(y)$ changes, but the relationship between inputs and outputs $P(y|X)$ remains unchanged. This means that while the data may look different, the decision boundary remains the same.
 
@@ -44,7 +44,7 @@ Denoting the **target variable** (air temperature) as $v_t$ , the classification
 
 1. **F1+**: Predicts **1** if the current temperature exceeds the previous temperature.
    
-   $y(X_t) = 11$ if $v_t > v_{t-1}$
+   $y(X_t) = 1$ if $v_t > v_{t-1}$
 
    $y(X_t) = 0$ otherwise
 
@@ -173,8 +173,8 @@ To assess forgetting, we compute on the test sets:
 For this project, you are required to modify the provided code to apply the methodologies and models to the new data stream with temporal dependencies, as outlined in the previous sections.
 
 1. **Modify the Code**  
-   - Adjust the existing SML models (ARF and ARF_TA) to handle the new data stream and incorporate temporal dependencies.
-   - Modify the CL strategies to manage the new data stream, ensuring correct handling of temporal dependencies and LSTM sequence construction as specified. Ensure your model handles the required sliding window mechanism for sequence generation.
+   - Adjust the code associated with SML models to handle the new data stream and incorporate temporal dependencies.
+   - Modify the CL strategies to manage the new data stream, ensuring correct handling of temporal dependencies and LSTM sequence construction as specified. Ensure your solution handles the required sliding window mechanism for sequence generation.
    - Make sure to apply the correct evaluation metrics (Prequential evaluation and CL metrics) for assessing the performance in both the virtual and real drift scenarios.
 
 2. **Prepare a Presentation (Notebook or PDF)**  
