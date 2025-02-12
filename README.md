@@ -43,49 +43,34 @@ The **Weather dataset** used for this task consists of weather-related data poin
 Denoting the **target variable** (air temperature) as $v_t$ , the classification functions are built as follows:
 
 1. **F1+**: Predicts **1** if the current temperature exceeds the previous temperature.
-$$
-y_t = 
-\begin{cases} 
-+1 & \text{if } v_t > 30 \\
--1 & \text{if } v_t \leq 30
-\end{cases}
-$$
+   
+   $y(X_t) = 11$ if $v_t > v_{t-1}$
+
+   $y(X_t) = 0$ otherwise
 
 2. **F2+**: Predicts **1** if the current temperature is greater than the median of the previous temperatures.
-   $$
-   y(X_t) = 
-   \begin{cases} 
-   1, & \text{if } v_t > \text{Median}(v_{t-k}, ..., v_{t-1}) \\
-   0, & \text{otherwise}
-   \end{cases}
-   $$
+
+   $y(X_t) = 1$ if $v_t > \text{Median}(v_{t-k}, ..., v_{t-1})$
+
+   $y(X_t) = 0$ otherwise
 
 3. **F3+**: Predicts **1** if the current temperature is greater than the minimum of the previous temperatures.
-   $$
-   y(X_t) = 
-   \begin{cases} 
-   1, & \text{if } v_t > \text{Min}(v_{t-k}, ..., v_{t-1}) \\
-   0, & \text{otherwise}
-   \end{cases}
-   $$
+
+   $y(X_t) =  1$ if $v_t > \text{Min}(v_{t-k}, ..., v_{t-1})$
+
+   $y(X_t) = 0$ otherwise
 
 4. **F4+**: Predicts **1** if the current temperature increase is greater than the previous temperature increase.
-   $$
-   y(X_t) = 
-   \begin{cases} 
-   1, & \text{if } \Delta_t > \Delta_{t-1} \\
-   0, & \text{otherwise}
-   \end{cases}
-   $$
+   
+   $y(X_t) = 1$ if $\Delta_t > \Delta_{t-1}$
+
+   $y(X_t) = 0$ otherwise
 
 5. **F5+**: Predicts **1** if the current temperature increase is greater than the median of the previous increases.
-   $$
-   y(X_t) = 
-   \begin{cases} 
-   1, & \text{if } \Delta_t > \text{Median}(\Delta_{t-k}, ..., \Delta_{t-1}) \\
-   0, & \text{otherwise}
-   \end{cases}
-   $$
+
+   $y(X_t) = 1$ if $\Delta_t > \text{Median}(\Delta_{t-k}, ..., \Delta_{t-1})$
+
+   $y(X_t) = 0$ otherwise
 
 Where:
 - $v_t$ is the air temperature at time $t$ .
@@ -131,11 +116,9 @@ The entry points for running the experiments are:
 The following SML will be evaluated using **River**:  
 
 - **Adaptive Random Forest (ARF)**: A standard ensemble method for data streams that adapts to concept drifts.  
-- **Adaptive Random Forest with Temporal Augmentation (ARF_TA)**: An extension of ARF that incorporates past labels as additional features. TA enhances the feature space by adding the labels of the **previous `o` data points**, allowing the model to leverage temporal dependencies:  
-
-  $$
-  X_t^{T} = X_t \cup \{y_{t-1}, y_{t-2}, ..., y_{t-o} \}
-  $$
+- **Adaptive Random Forest with Temporal Augmentation (ARF_TA)**: An extension of ARF that incorporates past labels as additional features. TA enhances the feature space by adding the labels of the **previous `o` data points**, allowing the model to leverage temporal dependencies:
+  
+   $X_t^{T} = X_t \cup \{y_{t-1}, y_{t-2}, ..., y_{t-o} \}$
 
   This helps ARF_TA capture patterns that standard SML models might miss.  
 
