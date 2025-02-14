@@ -4,7 +4,7 @@ Optional project of the [Streaming Data Analytics](https://emanueledellavalle.or
 
 Student: **[To be assigned]**
 
-**DISCAIMER**: This project requires a neural networks/deep learning background.
+**DISCLAIMER**: This project requires a neural networks/deep learning background.
 _____
 # Brief Description
 This project compares Streaming Machine Learning (SML) and Continual Learning (CL) models on data streams with **temporal dependencies**, under **virtual and real drift scenarios**. We use a weather dataset to predict air temperature based on various weather features, divided into five concepts representing different weather patterns.
