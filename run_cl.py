@@ -48,7 +48,7 @@ for DATASET in DATASETS:
             task_labels = torch.ones(len(x_data), dtype=torch.int8) * i
             # TODO: build sequences
             # For each data point you must build a sequence containing the previous 10 data points' features and
-            # the current data point's feature. It should be a tensor (concept_len, 10, 4)
+            # the current data point's feature. It should be a tensor (concept_len, 11, 4)
             # The first 10 data points will have a None/random prediction since it is not possible to build a sequence
             # on it
             avl_data = AvalancheDataset(
